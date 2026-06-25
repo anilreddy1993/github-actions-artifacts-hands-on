@@ -39,7 +39,7 @@ jobs:
         
     - name: Read file
       run: |
-        ls
+        ls -lrth artifacts/hello.txt
         cat artifacts/hello.txt
 
 
