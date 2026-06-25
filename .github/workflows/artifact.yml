@@ -1,47 +1,3 @@
-# name: Workflow Demo
-
-# on: [push]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v4
-
-#     - name: Create a text file
-#       run: echo "Hello, world!" > hello.txt
-
-#     - name: Archive text file
-#       uses: actions/upload-artifact@v4
-#       with:
-#         name: hello-artifact
-#         path: hello.txt
-
-#   download:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v4
-
-#     - name: Download artifact
-#       uses: actions/download-artifact@v4
-#       with:
-#         name: hello-artifact
-#         path: ./artifacts/hello.txt
-
-#     - name: list file
-#       run: |
-#         ls -lrtha
-#         ls artifacts
-        
-#     - name: Read file
-#       run: |
-#         ls -lrth artifacts/hello.txt
-#         cat artifacts/hello.txt
-
 name: Workflow Demo
 
 on: [push]
@@ -57,31 +13,22 @@ jobs:
     - name: Create a text file
       run: echo "Hello, world!" > hello.txt
 
-    - name: Archive text file
+    - name: Upload text file
       uses: actions/upload-artifact@v4
       with:
         name: hello-artifact
         path: hello.txt
 
   download:
+    needs: build   # ✅ runs after build job
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
     - name: Download text file
       uses: actions/download-artifact@v4
       with:
         name: hello-artifact
-        path: ./artifacts
+        path: ./artifacts   # ✅ correct directory
 
-    - name: List files
-      run: |
-        ls -lrtha
-        ls artifacts
-
-    - name: Display content of the text 
-      run: |
-        cat artifacts/hello.txt
+    - name: Display content of the text file
+      run: cat ./artifacts/hello.txt   # ✅ exact command
