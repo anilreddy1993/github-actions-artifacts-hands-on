@@ -34,9 +34,11 @@ jobs:
 
     - name: list file
       run: |
-        ls -a
+        ls -lrtha
         ls artifacts
-        cat artifacts/hello.txt
+        apt install tree
+        tree
+        
 
     - name: Read file
       run: cat ./artifacts/hello.txt
