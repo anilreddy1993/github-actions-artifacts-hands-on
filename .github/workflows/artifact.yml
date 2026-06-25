@@ -71,7 +71,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Download artifact
+    - name: Download text file
       uses: actions/download-artifact@v4
       with:
         name: hello-artifact
@@ -82,6 +82,6 @@ jobs:
         ls -lrtha
         ls artifacts
 
-    - name: Read file
+    - name: Display content of the text 
       run: |
         cat artifacts/hello.txt
