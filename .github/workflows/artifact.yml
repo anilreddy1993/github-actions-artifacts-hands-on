@@ -33,7 +33,10 @@ jobs:
         path: ./artifacts/hello.txt
 
     - name: list file
-      run: ls -a
+      run: |
+        ls -a
+        ls artifacts
+        cat artifacts/hello.txt
 
     - name: Read file
       run: cat ./artifacts/hello.txt
