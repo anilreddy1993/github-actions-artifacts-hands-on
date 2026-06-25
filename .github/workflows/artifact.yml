@@ -30,8 +30,8 @@ jobs:
       with:
         path: ./artifacts/hello.txt
 
-    - name: Read file
-      run: ls ./artifacts
+    - name: list file
+      run: ls -a
 
     - name: Read file
       run: cat ./artifacts/hello.txt
